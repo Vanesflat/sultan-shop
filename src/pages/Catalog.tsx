@@ -6,23 +6,6 @@ function Catalog(): JSX.Element {
 
       <main className="main">
 
-        <section className="bread-crumbs">
-          <div className="container">
-
-            <ul className="bread-crumbs__list">
-
-              <li className="bread-crumbs__item">
-                <a className="bread-crumbs__link" href="/#">Главная</a>
-              </li>
-
-              <li className="bread-crumbs__item">
-                <a className="bread-crumbs__link bread-crumbs__link--active" href="/#">Косметика и гигиена</a>
-              </li>
-
-            </ul>
-          </div>
-        </section>
-
         <section className="catalog">
           <div className="container">
             <h2 className="catalog__title title">Косметика и гигиена</h2>

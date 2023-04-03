@@ -6,27 +6,6 @@ function Product(): JSX.Element {
 
       <main className="main">
 
-        <section className="bread-crumbs">
-          <div className="container">
-
-            <ul className="bread-crumbs__list">
-
-              <li className="bread-crumbs__item">
-                <a className="bread-crumbs__link" href="index.html">Главная</a>
-              </li>
-
-              <li className="bread-crumbs__item">
-                <a className="bread-crumbs__link" href="/#">Косметика и гигиена</a>
-              </li>
-
-              <li className="bread-crumbs__item">
-                <a className="bread-crumbs__link bread-crumbs__link--active" href="/#">Название товара</a>
-              </li>
-
-            </ul>
-          </div>
-        </section>
-
         <article className="product-card">
           <div className="container">
             <div className="product-card__wrapper">

@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import BreadCrumbs from '../BreadCrumbs/BreadCrumbs';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 
@@ -14,6 +15,7 @@ function Layout({ pageTitle, children }: LayoutProps): JSX.Element {
         <title>Султан {pageTitle}</title>
       </Helmet>
       <Header />
+      <BreadCrumbs />
       {children}
       <Footer />
     </div>
