@@ -1,4 +1,6 @@
 import Layout from '../components/Layout/Layout';
+import Pagination from '../components/Pagination/Pagination';
+import Sort from '../components/Sort/Sort';
 import Tabs from '../components/Tabs/Tabs';
 
 function Catalog(): JSX.Element {
@@ -14,6 +16,7 @@ function Catalog(): JSX.Element {
             <Tabs classNames="catalog" />
 
             <div className="catalog__wrapper">
+
               <div className="catalog__filters filters">
 
                 <div className="filters__title">
@@ -69,17 +72,10 @@ function Catalog(): JSX.Element {
                 <Tabs classNames="filters" isVertical={true} />
 
               </div>
+
               <div className="catalog__content">
 
-                <div className="sort">
-                  <span className="sort__title">Сортировка:</span>
-                  <select className="sort__list">
-                    <option value="name" className="sort__item" selected>Название</option>
-                    <option value="price" className="sort__item">Цена</option>
-                    <option value="low" className="sort__item">Сначала дешевые</option>
-                    <option value="high" className="sort__item">Сначала дорогие</option>
-                  </select>
-                </div>
+                <Sort />
 
                 <div className="catalog__product-list product__list">
 
@@ -448,23 +444,7 @@ function Catalog(): JSX.Element {
 
                 </div>
 
-                <div className="catalog__pagination pagination">
-                  <button className="pagination__btn pagination__btn--prev">
-                    <img src="images/catalog/arrow-prev.svg" alt="Предыдущая страница" />
-                  </button>
-
-                  <ul className="pagination__list">
-                    <li className="pagination__item pagination__item--active"><a className="pagination__link" href="/#">1</a></li>
-                    <li className="pagination__item"><a className="pagination__link" href="/#">2</a></li>
-                    <li className="pagination__item"><a className="pagination__link" href="/#">3</a></li>
-                    <li className="pagination__item"><a className="pagination__link" href="/#">4</a></li>
-                    <li className="pagination__item"><a className="pagination__link" href="/#">5</a></li>
-                  </ul>
-
-                  <button className="pagination__btn pagination__btn--next">
-                    <img src="images/catalog/arrow-next.svg" alt="Следующая страница" />
-                  </button>
-                </div>
+                <Pagination />
 
                 <p className="catalog__info">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam interdum ut

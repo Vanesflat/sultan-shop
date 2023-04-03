@@ -1,3 +1,5 @@
+import BasketBtn from '../BasketBtn/BasketBtn';
+
 function Header(): JSX.Element {
   return (
     <header className="header">
@@ -74,20 +76,7 @@ function Header(): JSX.Element {
             <p className="btn__text">Прайс-лист</p>
           </button>
 
-          <div className="basket">
-            <div className="basket__box">
-              <button className="backet__btn">
-                <img src="images/header/main-basket.svg" alt="Корзина" />
-              </button>
-              <span className="basket__count">3</span>
-            </div>
-
-            <div className="basket__info">
-              <p className="basket__title">Корзина</p>
-              <p className="basket__price">12 478 ₸</p>
-            </div>
-
-          </div>
+          <BasketBtn />
 
         </div>
 
@@ -125,10 +114,10 @@ function Header(): JSX.Element {
             <p className="menu__title">Меню сайта:</p>
             <ul className="menu__list">
               <li className="menu__item">
-                <a className="menu__link" href="product.html">О компании</a>
+                <a className="menu__link" href="/#">О компании</a>
               </li>
               <li className="menu__item">
-                <a className="menu__link" href="basket.html">Доставка и оплата</a>
+                <a className="menu__link" href="/#">Доставка и оплата</a>
               </li>
               <li className="menu__item">
                 <a className="menu__link" href="/#">Возврат</a>
