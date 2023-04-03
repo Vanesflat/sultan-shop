@@ -1,4 +1,5 @@
 import Layout from '../components/Layout/Layout';
+import Tabs from '../components/Tabs/Tabs';
 
 function Catalog(): JSX.Element {
   return (
@@ -10,21 +11,7 @@ function Catalog(): JSX.Element {
           <div className="container">
             <h2 className="catalog__title title">Косметика и гигиена</h2>
 
-            <div className="catalog__tabs tabs">
-              <ul className="tabs__list">
-                <li className="tabs__item">Уход за телом</li>
-                <li className="tabs__item">Уход за руками</li>
-                <li className="tabs__item">Уход за ногами</li>
-                <li className="tabs__item">Уход за лицом</li>
-                <li className="tabs__item">Уход за волосами</li>
-                <li className="tabs__item">Средства для загара</li>
-                <li className="tabs__item">Средства для бритья</li>
-                <li className="tabs__item">Подарочные наборы</li>
-                <li className="tabs__item">Гигиеническая продукция</li>
-                <li className="tabs__item">Гигиена полости рта</li>
-                <li className="tabs__item">Бумажная продукция</li>
-              </ul>
-            </div>
+            <Tabs classNames="catalog" />
 
             <div className="catalog__wrapper">
               <div className="catalog__filters filters">
@@ -79,21 +66,7 @@ function Catalog(): JSX.Element {
                   </button>
                 </div>
 
-                <div className="filters__tabs tabs tabs--vertical">
-                  <ul className="tabs__list">
-                    <li className="tabs__item">Уход за телом</li>
-                    <li className="tabs__item">Уход за руками</li>
-                    <li className="tabs__item">Уход за ногами</li>
-                    <li className="tabs__item">Уход за лицом</li>
-                    <li className="tabs__item">Уход за волосами</li>
-                    <li className="tabs__item">Средства для загара</li>
-                    <li className="tabs__item">Средства для бритья</li>
-                    <li className="tabs__item">Подарочные наборы</li>
-                    <li className="tabs__item">Гигиеническая продукция</li>
-                    <li className="tabs__item">Гигиена полости рта</li>
-                    <li className="tabs__item">Бумажная продукция</li>
-                  </ul>
-                </div>
+                <Tabs classNames="filters" isVertical={true} />
 
               </div>
               <div className="catalog__content">
