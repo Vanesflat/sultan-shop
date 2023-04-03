@@ -11,7 +11,7 @@ function Layout({ pageTitle, children }: LayoutProps): JSX.Element {
   return (
     <div className="wrapper">
       <Helmet>
-        <title>Sultan Shop {pageTitle}</title>
+        <title>Султан {pageTitle}</title>
       </Helmet>
       <Header />
       {children}

@@ -1,10 +1,11 @@
+import { HelmetProvider } from 'react-helmet-async';
 import Catalog from '../../pages/Catalog';
 
 function App(): JSX.Element {
   return (
-    <div className="App">
+    <HelmetProvider>
       <Catalog />
-    </div>
+    </HelmetProvider>
   );
 }
 
