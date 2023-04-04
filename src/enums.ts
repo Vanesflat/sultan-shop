@@ -11,3 +11,10 @@ export enum Categories {
   Mouth = 'Гигиена полости рта',
   Paper = 'Бумажная продукция'
 };
+
+export enum SortType {
+  NameToZ = 'Название А-Я',
+  NameToA = 'Название Я-А',
+  PriceToHigh = 'Цена ↑',
+  PriceToLow = 'Цена ↓',
+}
