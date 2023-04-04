@@ -2,10 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 import { Product } from '../../types/product';
 import { InitialState } from '../../types/state';
 import products from '../../data/products.json';
+import { SortType } from '../../enums';
 
+const DEFAULT_SORT_TYPE = SortType.PriceToHigh;
 
 const initialState: InitialState = {
-  products: []
+  products: [],
+  sortType: DEFAULT_SORT_TYPE
 };
 
 export const ProductSlice = createSlice({
@@ -20,8 +23,17 @@ export const ProductSlice = createSlice({
         localStorage.setItem('products', JSON.stringify(products));
         state.products = products as Product[];
       }
+    },
+
+    changeSortType: (state, action) => {
+      state.sortType = action.payload;
     }
   }
 });
+
+export const {
+  loadProducts,
+  changeSortType
+} = ProductSlice.actions;
 
 export default ProductSlice.reducer;
