@@ -8,7 +8,7 @@ type LayoutProps = {
   children: React.ReactNode;
 }
 
-function Layout({ pageTitle, children }: LayoutProps): JSX.Element {
+function Layout({ pageTitle = '', children }: LayoutProps): JSX.Element {
   return (
     <div className="wrapper">
       <Helmet>
@@ -16,7 +16,9 @@ function Layout({ pageTitle, children }: LayoutProps): JSX.Element {
       </Helmet>
       <Header />
       <BreadCrumbs />
-      {children}
+      <main className="main">
+        {children}
+      </main>
       <Footer />
     </div>
   );
