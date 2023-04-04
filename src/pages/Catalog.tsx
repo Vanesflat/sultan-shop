@@ -1,31 +1,22 @@
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 import Filters from '../components/Filters/Filters';
 import Layout from '../components/Layout/Layout';
 import Pagination from '../components/Pagination/Pagination';
 import ProductList from '../components/ProductList/ProductList';
 import Sort from '../components/Sort/Sort';
 import Tabs from '../components/Tabs/Tabs';
-import products from '../data/products.json';
-// import { useAppDispatch, useAppSelector } from '../hooks/store';
-import { Product } from '../types/product';
-// import { loadProducts } from '../store/productsSlice';
+import { useAppDispatch, useAppSelector } from '../hooks/store';
+import { ProductSlice } from '../store/reducers/ProductSlice';
 
 function Catalog(): JSX.Element {
-  localStorage.setItem('products', JSON.stringify(products));
+  const { loadProducts } = ProductSlice.actions;
+  const dispatch = useAppDispatch();
 
-  let productsList;
-  let ls = localStorage.getItem('products');
-  if (ls) {
-    productsList = JSON.parse(ls) as Product[];
-  }
+  const { products } = useAppSelector((state) => state.productsReducer);
 
-  // const dispatch = useAppDispatch();
-
-  // useEffect(() => {
-  //   dispatch(loadProducts());
-  // }, []);
-
-  // const productsList: Product[] = useAppSelector((state) => state.products);
+  useEffect(() => {
+    dispatch(loadProducts());
+  }, [dispatch, loadProducts]);
 
   return (
     <Layout pageTitle="Каталог">
@@ -37,13 +28,13 @@ function Catalog(): JSX.Element {
 
           <div className="catalog__wrapper">
 
-            <Filters products={productsList} />
+            <Filters products={products} />
 
             <div className="catalog__content">
 
               <Sort />
 
-              <ProductList classNames="catalog" products={productsList} />
+              <ProductList classNames="catalog" products={products} />
 
               <Pagination />
 
