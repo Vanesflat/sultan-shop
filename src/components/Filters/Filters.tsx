@@ -37,9 +37,9 @@ function Filters({ products }: FiltersProps): JSX.Element {
 
       <div className="filters__price">
         <p>Цена <span>₸</span></p>
-        <input type="number" value="0" />
+        <input type="number" defaultValue="0" />
         <span>-</span>
-        <input type="number" value="10000" />
+        <input type="number" defaultValue="10000" />
       </div>
 
       <div className="filters__producer">

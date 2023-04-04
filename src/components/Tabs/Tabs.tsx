@@ -11,7 +11,13 @@ function Tabs({ classNames, isVertical }: TabsProps): JSX.Element {
     <div className={cn(`${classNames}__tabs tabs`, isVertical && 'tabs--vertical')}>
       <ul className="tabs__list">
         {Object.entries(Categories).map(([category, text]) => (
-          <li className="tabs__item" data-category={category}>{text}</li>
+          <li
+            className="tabs__item"
+            data-category={category}
+            key={category}
+          >
+            {text}
+          </li>
         ))}
       </ul>
     </div>
