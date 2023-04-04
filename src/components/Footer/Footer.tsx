@@ -4,7 +4,7 @@ function Footer(): JSX.Element {
       <div className="container">
         <div className="footer__wrapper">
           <div className="footer__left">
-            <img className="footer__logo" src="images/footer/logo.png" alt="Логотип" />
+            <img className="footer__logo" src="../images/footer/logo.png" alt="Логотип" />
             <p className="footer__info">
               Компания «Султан» — снабжаем розничные магазины товарами
               "под ключ" в Кокчетаве и Акмолинской области
@@ -16,7 +16,7 @@ function Footer(): JSX.Element {
               <form className="form" action="/">
                 <input className="form__input" type="email" placeholder="Введите ваш E-mail" />
                 <button className="form__btn" type="submit">
-                  <img src="images/footer/send.svg" alt="Отправить" />
+                  <img src="../images/footer/send.svg" alt="Отправить" />
                 </button>
               </form>
 
@@ -73,12 +73,12 @@ function Footer(): JSX.Element {
                 <ul className="footer__social-list">
                   <li className="footer__social-item">
                     <a className="footer__social-link" href="/#">
-                      <img src="images/footer/whatsapp.svg" alt="Написать в вотсапе" />
+                      <img src="../images/footer/whatsapp.svg" alt="Написать в вотсапе" />
                     </a>
                   </li>
                   <li className="footer__social-item">
                     <a className="footer__social-link" href="/#">
-                      <img src="images/footer/telegram.svg" alt="Написать в телеграме" />
+                      <img src="../images/footer/telegram.svg" alt="Написать в телеграме" />
                     </a>
                   </li>
                 </ul>
@@ -103,10 +103,10 @@ function Footer(): JSX.Element {
 
               <ul className="footer__cards">
                 <li className="footer__card">
-                  <img src="images/footer/Visa.svg" alt="Карта Виза" />
+                  <img src="../images/footer/Visa.svg" alt="Карта Виза" />
                 </li>
                 <li className="footer__card">
-                  <img src="images/footer/mastercard.svg" alt="Карта Мастеркард" />
+                  <img src="../images/footer/mastercard.svg" alt="Карта Мастеркард" />
                 </li>
               </ul>
 

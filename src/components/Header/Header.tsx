@@ -48,7 +48,7 @@ function Header(): JSX.Element {
           </button>
 
           <a className="header__logo" href="/#">
-            <img src="images/logo.png" alt="Логотип" />
+            <img src="../images/logo.png" alt="Логотип" />
           </a>
 
           <button className="header__btn btn btn--catalog">
@@ -58,7 +58,7 @@ function Header(): JSX.Element {
           <form className="form form--search" action="/">
             <input className="form__input" type="text" placeholder="Поиск..." />
             <button className="form__btn" type="submit">
-              <img src="images/header/search.svg" alt="Найти" />
+              <img src="../images/header/search.svg" alt="Найти" />
             </button>
           </form>
 
@@ -69,7 +69,7 @@ function Header(): JSX.Element {
               <button className="callback__btn">Заказать звонок</button>
             </div>
 
-            <img className="callback__avatar" src="images/header/support-avatar.png" alt="Аватар сотрудника поддержки" />
+            <img className="callback__avatar" src="../images/header/support-avatar.png" alt="Аватар сотрудника поддержки" />
           </div>
 
           <button className="header__btn btn btn--price">
