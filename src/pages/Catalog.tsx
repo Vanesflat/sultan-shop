@@ -1,24 +1,20 @@
-import { useEffect } from 'react';
 import Filters from '../components/Filters/Filters';
 import Layout from '../components/Layout/Layout';
 import Pagination from '../components/Pagination/Pagination';
 import ProductList from '../components/ProductList/ProductList';
 import Sort from '../components/Sort/Sort';
 import Tabs from '../components/Tabs/Tabs';
-import { useAppDispatch, useAppSelector } from '../hooks/store';
-import { loadProducts } from '../store/reducers/ProductSlice';
+import { useAppSelector } from '../hooks/store';
+import { Product } from '../types/product';
 import { getSortedProducts } from '../utils/sort';
 
-function Catalog(): JSX.Element {
-  const { products } = useAppSelector((state) => state.productsReducer);
+type CatalogProps = {
+  products: Product[];
+}
+
+function Catalog({ products }: CatalogProps): JSX.Element {
   const { sortType } = useAppSelector((state) => state.productsReducer);
   const sortedProducts = getSortedProducts(products, sortType);
-
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(loadProducts());
-  }, [dispatch]);
 
   return (
     <Layout pageTitle="Каталог">

@@ -1,5 +1,7 @@
 import { Product } from '../../types/product';
 import Capacity from '../Capacity/Capacity';
+import { Link, generatePath } from 'react-router-dom';
+import { AppRoute } from '../../enums';
 
 type ProductCardProps = {
   product: Product;
@@ -8,12 +10,12 @@ type ProductCardProps = {
 function ProductCard({ product }: ProductCardProps): JSX.Element {
   return (
     <article className="product__card">
-      <div className="product__img-wrapper">
+      <Link className="product__img-wrapper" to={generatePath(AppRoute.Product, { id: `${product.id}` })}>
         <img className="product__img" src={product.imgUrl} alt={product.name} />
-      </div>
+      </Link>
       <div className="product__about">
         <Capacity sizeType={product.sizeType} size={product.size} />
-        <p className="product__name">{product.name}</p>
+        <Link className="product__name" to={generatePath(AppRoute.Product, { id: `${product.id}` })}>{product.name}</Link>
         <p className="product__info">{product.description}</p>
       </div>
 
