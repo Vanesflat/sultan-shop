@@ -6,17 +6,19 @@ import ProductList from '../components/ProductList/ProductList';
 import Sort from '../components/Sort/Sort';
 import Tabs from '../components/Tabs/Tabs';
 import { useAppDispatch, useAppSelector } from '../hooks/store';
-import { ProductSlice } from '../store/reducers/ProductSlice';
+import { loadProducts } from '../store/reducers/ProductSlice';
+import { getSortedProducts } from '../utils/sort';
 
 function Catalog(): JSX.Element {
-  const { loadProducts } = ProductSlice.actions;
-  const dispatch = useAppDispatch();
-
   const { products } = useAppSelector((state) => state.productsReducer);
+  const { sortType } = useAppSelector((state) => state.productsReducer);
+  const sortedProducts = getSortedProducts(products, sortType);
+
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(loadProducts());
-  }, [dispatch, loadProducts]);
+  }, [dispatch]);
 
   return (
     <Layout pageTitle="Каталог">
@@ -32,9 +34,9 @@ function Catalog(): JSX.Element {
 
             <div className="catalog__content">
 
-              <Sort />
+              <Sort sortType={sortType} />
 
-              <ProductList classNames="catalog" products={products} />
+              <ProductList classNames="catalog" products={sortedProducts} />
 
               <Pagination />
 
