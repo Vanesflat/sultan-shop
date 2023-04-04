@@ -1,10 +1,10 @@
-import { store } from '../store/store';
+import { setupStore, rootReducer } from '../store/store';
 import { Product } from './product';
 
 export type InitialState = {
   products: Product[];
 };
 
-export type State = ReturnType<typeof store.getState>;
-
-export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppStore = ReturnType<typeof setupStore>;
+export type AppDispatch = AppStore['dispatch'];
