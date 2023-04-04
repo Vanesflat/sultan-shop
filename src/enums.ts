@@ -17,4 +17,10 @@ export enum SortType {
   NameToA = 'Название Я-А',
   PriceToHigh = 'Цена ↑',
   PriceToLow = 'Цена ↓',
-}
+};
+
+export enum AppRoute {
+  Catalog = '/',
+  Product = '/product/:id',
+  Basket = '/basket'
+};
