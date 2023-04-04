@@ -1,21 +1,47 @@
 import { SortType } from '../../enums';
+import { useAppDispatch } from '../../hooks/store';
+import { changeSortType } from '../../store/reducers/ProductSlice';
+import { useState } from 'react';
+import cn from 'classnames';
 
-function Sort(): JSX.Element {
+type SortProps = {
+  sortType: SortType;
+};
+
+function Sort({ sortType }: SortProps): JSX.Element {
+  const [opened, setOpened] = useState(false);
+
+  const dispatch = useAppDispatch();
+
   return (
-    <div className="sort">
-      <span className="sort__title">Сортировка:</span>
-      <select className="sort__list" value="">
-        {Object.entries(SortType).map(([value, sortType]) => (
-          <option
-            value={value}
-            className="sort__item"
-            key={value}
+    <form className="sort" action="#">
+      <div className="sort__wrapper">
+        <span className="sort__title">Сортировка: </span>
+        <button
+          className="sort__type"
+          onClick={() => setOpened(!opened)}
+        >
+          {sortType}
+          <img src="images/catalog/arrow-down.svg" alt="Открыть список" />
+        </button>
+      </div>
+      <ul className={cn('sort__list', opened && 'sort__list--open')}>
+        {Object.values(SortType).map((type) => (
+          <li
+            className={cn('sort__item', { 'sort__item--active': type === sortType })}
+            key={type}
+            onClick={(evt) => {
+              evt.preventDefault();
+
+              dispatch(changeSortType(type))
+              setOpened(false);
+            }}
           >
-            {sortType}
-          </option>
+            {type}
+          </li>
         ))}
-      </select>
-    </div>
+      </ul>
+    </form >
   );
 }
 
