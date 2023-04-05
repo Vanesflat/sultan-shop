@@ -19,7 +19,11 @@ function Sort({ sortType }: SortProps): JSX.Element {
         <span className="sort__title">Сортировка: </span>
         <button
           className="sort__type"
-          onClick={() => setOpened(!opened)}
+          onClick={(evt) => {
+            evt.preventDefault();
+
+            setOpened(!opened);
+          }}
         >
           {sortType}
           <img src="images/catalog/arrow-down.svg" alt="Открыть список" />
