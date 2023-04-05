@@ -3,10 +3,11 @@ import Layout from '../components/Layout/Layout';
 import Pagination from '../components/Pagination/Pagination';
 import ProductList from '../components/ProductList/ProductList';
 import Sort from '../components/Sort/Sort';
-import Tabs from '../components/Tabs/Tabs';
 import { useAppSelector } from '../hooks/store';
 import { Product } from '../types/product';
 import { getSortedProducts } from '../utils/sort';
+import Categories from '../components/Categories/Categories';
+import { getFilteredProducts } from '../utils/filter';
 
 type CatalogProps = {
   products: Product[];
@@ -14,7 +15,9 @@ type CatalogProps = {
 
 function Catalog({ products }: CatalogProps): JSX.Element {
   const { sortType } = useAppSelector((state) => state.productsReducer);
+  const { category } = useAppSelector((state) => state.productsReducer);
   const sortedProducts = getSortedProducts(products, sortType);
+  const filteredProducts = getFilteredProducts(sortedProducts, category);
 
   return (
     <Layout pageTitle="Каталог">
@@ -22,17 +25,17 @@ function Catalog({ products }: CatalogProps): JSX.Element {
         <div className="container">
           <h2 className="catalog__title title">Косметика и гигиена</h2>
 
-          <Tabs classNames="catalog" />
+          <Categories classNames="catalog" currentCategory={category} />
 
           <div className="catalog__wrapper">
 
-            <Filters products={products} />
+            <Filters products={products} currentCategory={category} />
 
             <div className="catalog__content">
 
               <Sort sortType={sortType} />
 
-              <ProductList classNames="catalog" products={sortedProducts} />
+              <ProductList classNames="catalog" products={filteredProducts} />
 
               <Pagination />
 

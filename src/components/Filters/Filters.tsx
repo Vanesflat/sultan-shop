@@ -1,10 +1,12 @@
 import { useMemo, useState } from 'react';
 import { Product } from '../../types/product';
-import Tabs from '../Tabs/Tabs';
+import Categories from '../Categories/Categories';
 import cn from 'classnames';
+import { CategoryList } from '../../enums';
 
 type FiltersProps = {
   products: Product[];
+  currentCategory: CategoryList | null;
 };
 
 type Producer = {
@@ -24,7 +26,7 @@ const getProducers = (products: Product[]) =>
     return acc;
   }, {});
 
-function Filters({ products }: FiltersProps): JSX.Element {
+function Filters({ products, currentCategory }: FiltersProps): JSX.Element {
   const [visible, setVisible] = useState(true);
   const [visibleProducers, setVisibleProducers] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -105,7 +107,7 @@ function Filters({ products }: FiltersProps): JSX.Element {
         </>
       )}
 
-      <Tabs classNames="filters" isVertical={true} />
+      <Categories classNames="filters" isVertical={true} currentCategory={currentCategory} />
 
     </div>
   );
