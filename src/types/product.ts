@@ -10,5 +10,6 @@ export type Product = {
   description: string,
   price: string,
   inStock: boolean,
-  types: string[]
+  types: string[],
+  count: number
 };
