@@ -1,10 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Product } from '../../types/product';
-import { InitialState } from '../../types/state';
 import products from '../../data/products.json';
-import { SortType } from '../../enums';
+import { CategoryList, SortType } from '../../enums';
 
 const DEFAULT_SORT_TYPE = SortType.PriceToHigh;
+
+type InitialState = {
+  products: Product[];
+  sortType: SortType;
+  category: CategoryList | null;
+};
 
 const initialState: InitialState = {
   products: [],
