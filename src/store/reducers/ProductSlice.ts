@@ -8,7 +8,8 @@ const DEFAULT_SORT_TYPE = SortType.PriceToHigh;
 
 const initialState: InitialState = {
   products: [],
-  sortType: DEFAULT_SORT_TYPE
+  sortType: DEFAULT_SORT_TYPE,
+  category: null
 };
 
 export const ProductSlice = createSlice({
@@ -27,13 +28,18 @@ export const ProductSlice = createSlice({
 
     changeSortType: (state, action) => {
       state.sortType = action.payload;
+    },
+
+    changeCategory: (state, action) => {
+      state.category = action.payload;
     }
   }
 });
 
 export const {
   loadProducts,
-  changeSortType
+  changeSortType,
+  changeCategory
 } = ProductSlice.actions;
 
 export default ProductSlice.reducer;
