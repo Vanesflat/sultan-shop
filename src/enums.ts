@@ -1,4 +1,4 @@
-export enum Categories {
+export enum CategoryList {
   Body = 'Уход за телом',
   Hands = 'Уход за руками',
   Legs = 'Уход за ногами',
