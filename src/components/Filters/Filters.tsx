@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Product } from '../../types/product';
 import Tabs from '../Tabs/Tabs';
 import cn from 'classnames';
@@ -11,11 +11,8 @@ type Producer = {
   [producer: string]: number;
 }
 
-function Filters({ products }: FiltersProps): JSX.Element {
-  const [visible, setVisible] = useState(true);
-  const [visibleProducers, setVisibleProducers] = useState(false);
-
-  const producers = products?.reduce((acc: Producer, product) => {
+const getProducers = (products: Product[]) =>
+  products.reduce((acc: Producer, product) => {
     const producer = product.producer;
 
     if (!acc[producer]) {
@@ -26,6 +23,16 @@ function Filters({ products }: FiltersProps): JSX.Element {
 
     return acc;
   }, {});
+
+function Filters({ products }: FiltersProps): JSX.Element {
+  const [visible, setVisible] = useState(true);
+  const [visibleProducers, setVisibleProducers] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const producers = getProducers(products);
+  const searchedProducers = useMemo(() => {
+    return Object.entries(producers).filter(([producer, _]) => producer.toLowerCase().includes(searchQuery.toLowerCase()));
+  }, [searchQuery, producers]);
 
   return (
     <div className="filters">
@@ -44,20 +51,28 @@ function Filters({ products }: FiltersProps): JSX.Element {
         <>
           <div className="filters__price">
             <p>Цена <span>₸</span></p>
-            <input type="number" defaultValue="0" />
+            <input type="number" placeholder="0" />
             <span>-</span>
-            <input type="number" defaultValue="10000" />
+            <input type="number" placeholder="10000" />
           </div>
 
           <div className="filters__producer">
             <p>Производитель</p>
             <form className="form form--search" action="/">
-              <input className="form__input" type="text" placeholder="Поиск..." />
+              <input
+                className="form__input"
+                type="text"
+                placeholder="Поиск..."
+                onChange={(evt) => {
+                  setSearchQuery(evt.target.value);
+                }}
+              />
               <button className="form__btn" type="submit">
                 <img src="images/header/search.svg" alt="Найти" />
               </button>
               <fieldset className="form__producers">
-                {Object.entries(producers).map(([producer, count], i) => {
+                {searchedProducers.map((producer, i) => {
+                  const [name, count] = producer;
 
                   if (!visibleProducers && i >= 4) {
                     return '';
@@ -66,7 +81,7 @@ function Filters({ products }: FiltersProps): JSX.Element {
                   return (
                     <div className="form__group" key={i}>
                       <input className="form__checkbox" type="checkbox" id={`producer-${i}`} />
-                      <label htmlFor={`producer-${i}`}> {producer} <span className="form__count">({count})</span></label>
+                      <label htmlFor={`producer-${i}`}> {name} <span className="form__count">({count})</span></label>
                     </div>
                   )
                 })}
