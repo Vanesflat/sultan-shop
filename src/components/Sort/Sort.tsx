@@ -1,8 +1,9 @@
 import { SortType } from '../../enums';
 import { useAppDispatch } from '../../hooks/store';
 import { changeSortType } from '../../store/reducers/ProductSlice';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import cn from 'classnames';
+import { useOnClickOutside } from '../../hooks/useOnClickOutside';
 
 type SortProps = {
   sortType: SortType;
@@ -10,6 +11,9 @@ type SortProps = {
 
 function Sort({ sortType }: SortProps): JSX.Element {
   const [opened, setOpened] = useState(false);
+  const sortRef = useRef(null);
+
+  useOnClickOutside(sortRef, () => setOpened(false));
 
   const dispatch = useAppDispatch();
 
@@ -29,7 +33,7 @@ function Sort({ sortType }: SortProps): JSX.Element {
           <img src="images/catalog/arrow-down.svg" alt="Открыть список" />
         </button>
       </div>
-      <ul className={cn('sort__list', opened && 'sort__list--open')}>
+      <ul className={cn('sort__list', opened && 'sort__list--open')} ref={sortRef} >
         {Object.values(SortType).map((type) => (
           <li
             className={cn('sort__item', { 'sort__item--active': type === sortType })}

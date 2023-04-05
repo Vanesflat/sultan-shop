@@ -23,7 +23,7 @@ function ProductPage({ products }: ProductPageProps): JSX.Element {
   }
 
   return (
-    <Layout>
+    <Layout pageTitle={product.name} >
       <article className="product-card">
         <div className="container">
           <div className="product-card__wrapper">

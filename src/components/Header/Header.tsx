@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../../enums';
 import BasketBtn from '../BasketBtn/BasketBtn';
 
 function Header(): JSX.Element {
@@ -51,9 +53,9 @@ function Header(): JSX.Element {
             <img src="../images/logo.png" alt="Логотип" />
           </a>
 
-          <button className="header__btn btn btn--catalog">
+          <Link className="header__btn btn btn--catalog" to={AppRoute.Catalog}>
             <p className="btn__text">Каталог</p>
-          </button>
+          </Link>
 
           <form className="form form--search" action="/">
             <input className="form__input" type="text" placeholder="Поиск..." />
