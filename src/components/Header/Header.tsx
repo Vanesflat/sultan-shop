@@ -49,9 +49,9 @@ function Header(): JSX.Element {
             <span></span>
           </button>
 
-          <a className="header__logo" href="/#">
+          <Link className="header__logo" to={AppRoute.Catalog}>
             <img src="../images/logo.png" alt="Логотип" />
-          </a>
+          </Link>
 
           <Link className="header__btn btn btn--catalog" to={AppRoute.Catalog}>
             <p className="btn__text">Каталог</p>
