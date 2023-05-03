@@ -3,7 +3,7 @@ import ProductList from '../components/ProductList/ProductList';
 import { useAppSelector } from '../hooks/store';
 import { getProducts, getTotalPrice } from '../store/reducers/Basket/selectors';
 
-function Basket(): JSX.Element {
+function BasketPage(): JSX.Element {
   const products = useAppSelector(getProducts);
   const totalPrice = useAppSelector(getTotalPrice);
 
@@ -27,4 +27,4 @@ function Basket(): JSX.Element {
   );
 }
 
-export default Basket;
+export default BasketPage;

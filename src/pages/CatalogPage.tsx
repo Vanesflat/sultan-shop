@@ -10,11 +10,11 @@ import Categories from '../components/Categories/Categories';
 import { getFilteredProducts } from '../utils/filter';
 import { getCurrentCategory, getCurrentSortType } from '../store/reducers/Products/selectors';
 
-type CatalogProps = {
+type CatalogPageProps = {
   products: Product[];
 }
 
-function Catalog({ products }: CatalogProps): JSX.Element {
+function CatalogPage({ products }: CatalogPageProps): JSX.Element {
   const sortType = useAppSelector(getCurrentSortType);
   const category = useAppSelector(getCurrentCategory);
   const sortedProducts = getSortedProducts(products, sortType);
@@ -56,4 +56,4 @@ function Catalog({ products }: CatalogProps): JSX.Element {
   );
 }
 
-export default Catalog;
+export default CatalogPage;
