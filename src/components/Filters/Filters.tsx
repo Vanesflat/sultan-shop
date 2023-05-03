@@ -2,11 +2,11 @@ import { useMemo, useState } from 'react';
 import { Product } from '../../types/product';
 import Categories from '../Categories/Categories';
 import cn from 'classnames';
-import { CategoryList } from '../../enums';
+import { Category } from '../../enums';
 
 type FiltersProps = {
   products: Product[];
-  currentCategory: CategoryList | null;
+  currentCategory: Category | null;
 };
 
 type Producer = {

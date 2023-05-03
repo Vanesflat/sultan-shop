@@ -1,13 +1,14 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import productsReducer from './reducers/ProductSlice';
-import basketReducer from './reducers/BasketSlice';
+import productsReducer from './reducers/Products/Products';
+import basketReducer from './reducers/Basket/Basket';
 import { createAPI } from '../services/api';
+import { NameSpace } from '../enums';
 
 export const api = createAPI();
 
 export const rootReducer = combineReducers({
-  productsReducer,
-  basketReducer
+  [NameSpace.Products]: productsReducer,
+  [NameSpace.Basket]: basketReducer
 })
 
 export const setupStore = () => {

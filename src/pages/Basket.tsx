@@ -1,9 +1,11 @@
 import Layout from '../components/Layout/Layout';
 import ProductList from '../components/ProductList/ProductList';
 import { useAppSelector } from '../hooks/store';
+import { getProducts, getTotalPrice } from '../store/reducers/Basket/selectors';
 
 function Basket(): JSX.Element {
-  const { products, totalPrice } = useAppSelector((state) => state.basketReducer);
+  const products = useAppSelector(getProducts);
+  const totalPrice = useAppSelector(getTotalPrice);
 
   return (
     <Layout pageTitle="Корзина">

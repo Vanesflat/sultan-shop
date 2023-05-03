@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { Product } from '../../types/product';
+import { NameSpace } from '../../../enums';
+import { Product } from '../../../types/product';
 
 type InitialState = {
   products: Product[];
@@ -12,7 +13,7 @@ const initialState: InitialState = {
 };
 
 export const BasketSlice = createSlice({
-  name: 'basket',
+  name: NameSpace.Basket,
   initialState,
   reducers: {
     addProduct: (state, action) => {

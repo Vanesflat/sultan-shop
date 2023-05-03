@@ -8,14 +8,15 @@ import { Product } from '../types/product';
 import { getSortedProducts } from '../utils/sort';
 import Categories from '../components/Categories/Categories';
 import { getFilteredProducts } from '../utils/filter';
+import { getCurrentCategory, getCurrentSortType } from '../store/reducers/Products/selectors';
 
 type CatalogProps = {
   products: Product[];
 }
 
 function Catalog({ products }: CatalogProps): JSX.Element {
-  const { sortType } = useAppSelector((state) => state.productsReducer);
-  const { category } = useAppSelector((state) => state.productsReducer);
+  const sortType = useAppSelector(getCurrentSortType);
+  const category = useAppSelector(getCurrentCategory);
   const sortedProducts = getSortedProducts(products, sortType);
   const filteredProducts = getFilteredProducts(sortedProducts, category);
 

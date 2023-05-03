@@ -7,9 +7,10 @@ import ProductPage from '../../pages/ProductPage';
 import { useEffect } from 'react';
 import Basket from '../../pages/Basket';
 import { fetchProductsAction } from '../../store/api-actions';
+import { getProducts } from '../../store/reducers/Products/selectors';
 
 function App(): JSX.Element {
-  const { products } = useAppSelector((state) => state.productsReducer);
+  const products = useAppSelector(getProducts);
   const dispatch = useAppDispatch();
 
   useEffect(() => {

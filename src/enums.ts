@@ -1,4 +1,4 @@
-export enum CategoryList {
+export enum Category {
   Body = 'Уход за телом',
   Hands = 'Уход за руками',
   Legs = 'Уход за ногами',
@@ -25,3 +25,15 @@ export enum AppRoute {
   Product = '/product/:id',
   Basket = '/basket'
 };
+
+export enum Status {
+  Idle = 'idle',
+  Loading = 'loading',
+  Success = 'success',
+  Error = 'error'
+};
+
+export enum NameSpace {
+  Products = 'PRODUCTS',
+  Basket = 'BASKET'
+}

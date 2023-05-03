@@ -1,6 +1,6 @@
 import { SortType } from '../../enums';
 import { useAppDispatch } from '../../hooks/store';
-import { changeSortType } from '../../store/reducers/ProductSlice';
+import { changeSortType } from '../../store/reducers/Products/Products';
 import { useState, useRef } from 'react';
 import cn from 'classnames';
 import { useOnClickOutside } from '../../hooks/useOnClickOutside';

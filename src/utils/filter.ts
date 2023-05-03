@@ -1,7 +1,7 @@
-import { CategoryList } from '../enums';
+import { Category } from '../enums';
 import { Product } from '../types/product';
 
-export const getFilteredProducts = (products: Product[], category: CategoryList | null): Product[] => {
+export const getFilteredProducts = (products: Product[], category: Category | null): Product[] => {
   if (!category) {
     return products;
   }

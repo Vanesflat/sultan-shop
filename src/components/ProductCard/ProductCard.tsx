@@ -3,14 +3,16 @@ import Capacity from '../Capacity/Capacity';
 import { Link, generatePath } from 'react-router-dom';
 import { AppRoute } from '../../enums';
 import { useAppDispatch, useAppSelector } from '../../hooks/store';
-import { addProduct, removeProduct, minusProduct } from '../../store/reducers/BasketSlice';
+import { addProduct, removeProduct, minusProduct } from '../../store/reducers/Basket/Basket';
+import { getProducts } from '../../store/reducers/Basket/selectors';
 
 type ProductCardProps = {
   product: Product;
 };
 
 function ProductCard({ product }: ProductCardProps): JSX.Element {
-  const productItem = useAppSelector((state) => state.basketReducer.products.find((productEl) => productEl.id === product.id))
+  const products = useAppSelector(getProducts);
+  const productItem = products.find((productEl) => productEl.id === product.id);
   const dispatch = useAppDispatch();
 
   const addedCount = productItem ? productItem.count : 0;
