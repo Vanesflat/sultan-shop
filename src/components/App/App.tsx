@@ -4,17 +4,17 @@ import { AppRoute } from '../../enums';
 import { useAppDispatch, useAppSelector } from '../../hooks/store';
 import Catalog from '../../pages/Catalog';
 import ProductPage from '../../pages/ProductPage';
-import { loadProducts } from '../../store/reducers/ProductSlice';
 import { useEffect } from 'react';
 import Basket from '../../pages/Basket';
+import { fetchProductsAction } from '../../store/api-actions';
 
 function App(): JSX.Element {
   const { products } = useAppSelector((state) => state.productsReducer);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(loadProducts());
-  }, []);
+    dispatch(fetchProductsAction());
+  }, [dispatch]);
 
   return (
     <HelmetProvider>

@@ -21,6 +21,7 @@ export enum SortType {
 
 export enum AppRoute {
   Catalog = '/',
+  Products = '/products',
   Product = '/product/:id',
   Basket = '/basket'
 };
