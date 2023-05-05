@@ -26,8 +26,6 @@ function CatalogPage({ products }: CatalogPageProps): JSX.Element {
   const pageCount = Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE);
   const renderedProducts = filteredProducts.slice((currentPage - 1) * PRODUCTS_PER_PAGE, currentPage * PRODUCTS_PER_PAGE);
 
-  console.log(currentPage);
-
   return (
     <Layout pageTitle="Каталог">
       <section className="catalog">

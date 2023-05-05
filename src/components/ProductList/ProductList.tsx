@@ -17,7 +17,7 @@ function ProductList({ classNames, products }: ProductListProps): JSX.Element {
     <div className={`${classNames}__product-list product__list`}>
       {fetchStatus.isLoading && Array.from({ length: 6 }, (_, i) => <Skeleton key={i} />)}
 
-      {!products.length && <ProductsEmpty />}
+      {!products.length && !fetchStatus.isLoading && <ProductsEmpty />}
 
       {products.map((product) => (
         <ProductCard product={product} key={product.id} />
