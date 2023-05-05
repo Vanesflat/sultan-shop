@@ -1,8 +1,11 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { Product } from '../../types/product';
 import Categories from '../Categories/Categories';
 import cn from 'classnames';
 import { Category } from '../../enums';
+import { useResize } from '../../hooks/useResize';
+
+export const DESKTOP_SCREEN_SIZE = 768;
 
 type FiltersProps = {
   products: Product[];
@@ -35,6 +38,13 @@ function Filters({ products, currentCategory }: FiltersProps): JSX.Element {
   const searchedProducers = useMemo(() => {
     return Object.entries(producers).filter(([producer, _]) => producer.toLowerCase().includes(searchQuery.toLowerCase()));
   }, [searchQuery, producers]);
+  const screenWidth = useResize();
+
+  useEffect(() => {
+    if (screenWidth.isScreenDesktop) {
+      setVisible(true);
+    }
+  }, [screenWidth.isScreenDesktop])
 
   return (
     <div className="filters">
