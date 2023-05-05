@@ -5,6 +5,9 @@ import Mark from '../components/Mark/Mark';
 import { useParams, Navigate } from 'react-router-dom';
 import { useState } from 'react';
 import cn from 'classnames';
+import { AppRoute } from '../enums';
+import { addProduct } from '../store/reducers/Basket/Basket';
+import { useAppDispatch } from '../hooks/store';
 
 type ProductPageProps = {
   products: Product[];
@@ -15,11 +18,12 @@ function ProductPage({ products }: ProductPageProps): JSX.Element {
   const [featuresVisible, setFeaturesVisible] = useState(false);
 
   const { id } = useParams();
+  const dispatch = useAppDispatch();
 
   const product = products.find((offerItem) => offerItem.id === id);
 
   if (!product) {
-    return (<Navigate to='/' />);
+    return (<Navigate to={AppRoute.Catalog} />);
   }
 
   return (
@@ -41,13 +45,10 @@ function ProductPage({ products }: ProductPageProps): JSX.Element {
               <div className="product-card__price-group">
                 <p className="product-card__price">{product.price} ₸</p>
 
-                <div className="product-card__counter counter">
-                  <button className="counter__btn counter__btn--minus">-</button>
-                  <span className="counter__count">1</span>
-                  <button className="counter__btn counter__btn--plus">+</button>
-                </div>
-
-                <button className="btn btn--medium btn--basket">
+                <button
+                  className="btn btn--medium btn--basket"
+                  onClick={() => dispatch(addProduct(product))}
+                >
                   <p className="btn__text">В корзину</p>
                 </button>
               </div>
