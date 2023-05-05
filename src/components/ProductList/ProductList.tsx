@@ -13,13 +13,11 @@ type ProductListProps = {
 function ProductList({ classNames, products }: ProductListProps): JSX.Element {
   const fetchStatus = useAppSelector(getFetchStatus);
 
-  if (!products.length) {
-    return <ProductsEmpty />;
-  }
-
   return (
     <div className={`${classNames}__product-list product__list`}>
       {fetchStatus.isLoading && Array.from({ length: 6 }, (_, i) => <Skeleton key={i} />)}
+
+      {!products.length && <ProductsEmpty />}
 
       {products.map((product) => (
         <ProductCard product={product} key={product.id} />
