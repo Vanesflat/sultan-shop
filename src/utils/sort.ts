@@ -1,7 +1,7 @@
 import { SortType } from '../enums';
 import { Product } from '../types/product';
 
-export const getSortedProducts = (products: Product[], sortType: SortType): Product[] => {
+export const sortProducts = (products: Product[], sortType: SortType): Product[] => {
   switch (sortType) {
     case SortType.PriceToHigh:
       return [...products].sort((a, b) => parseFloat(a.price) - parseFloat(b.price));

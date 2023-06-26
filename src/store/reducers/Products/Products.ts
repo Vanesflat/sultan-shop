@@ -9,6 +9,7 @@ type InitialState = {
   products: Product[];
   sortType: SortType;
   category: Category | null;
+  producers: string[];
   status: Status;
 };
 
@@ -16,6 +17,7 @@ const initialState: InitialState = {
   products: [],
   sortType: DEFAULT_SORT_TYPE,
   category: null,
+  producers: [],
   status: Status.Idle
 };
 
@@ -29,6 +31,20 @@ export const ProductsSlice = createSlice({
 
     changeCategory: (state, action) => {
       state.category = action.payload;
+    },
+
+    changeProducer: (state, action) => {
+      if (state.producers.includes(action.payload)) {
+        state.producers = state.producers.filter((producer) => producer !== action.payload);
+
+        return;
+      }
+
+      state.producers.push(action.payload);
+    },
+
+    resetFilters: (state) => {
+      state.producers = [];
     }
   },
   extraReducers(builder) {
@@ -48,7 +64,9 @@ export const ProductsSlice = createSlice({
 
 export const {
   changeSortType,
-  changeCategory
+  changeCategory,
+  changeProducer,
+  resetFilters
 } = ProductsSlice.actions;
 
 export default ProductsSlice.reducer;

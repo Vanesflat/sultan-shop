@@ -4,6 +4,9 @@ import Categories from '../Categories/Categories';
 import cn from 'classnames';
 import { Category } from '../../enums';
 import { useResize } from '../../hooks/useResize';
+import { useAppDispatch, useAppSelector } from '../../hooks/store';
+import { changeProducer, resetFilters } from '../../store/reducers/Products/Products';
+import { getCurrentProducers } from '../../store/reducers/Products/selectors';
 
 export const DESKTOP_SCREEN_SIZE = 768;
 
@@ -39,6 +42,18 @@ function Filters({ products, currentCategory }: FiltersProps): JSX.Element {
     return Object.entries(producers).filter(([producer, _]) => producer.toLowerCase().includes(searchQuery.toLowerCase()));
   }, [searchQuery, producers]);
   const screenWidth = useResize();
+
+  const currentProducers = useAppSelector(getCurrentProducers);
+
+  const dispatch = useAppDispatch();
+
+  const handleProducerChange = (producer: string) => {
+    dispatch(changeProducer(producer));
+  };
+
+  const handleResetClick = () => {
+    dispatch(resetFilters());
+  }
 
   useEffect(() => {
     if (screenWidth.isScreenDesktop) {
@@ -92,7 +107,13 @@ function Filters({ products, currentCategory }: FiltersProps): JSX.Element {
 
                   return (
                     <div className="form__group" key={i}>
-                      <input className="form__checkbox" type="checkbox" id={`producer-${i}`} />
+                      <input
+                        className="form__checkbox"
+                        type="checkbox"
+                        id={`producer-${i}`}
+                        checked={currentProducers.includes(name)}
+                        onChange={() => handleProducerChange(name)}
+                      />
                       <label htmlFor={`producer-${i}`}> {name} <span className="form__count">({count})</span></label>
                     </div>
                   )
@@ -108,7 +129,11 @@ function Filters({ products, currentCategory }: FiltersProps): JSX.Element {
 
               <div className="filters__controls">
                 <button className="btn" type="submit">Показать</button>
-                <button className="btn btn--small" type="reset">
+                <button 
+                className="btn btn--small" 
+                type="reset"
+                onClick={handleResetClick}
+                >
                   <img src="images/catalog/trash.svg" alt="Удалить" />
                 </button>
               </div>

@@ -5,10 +5,8 @@ import ProductList from '../components/ProductList/ProductList';
 import Sort from '../components/Sort/Sort';
 import { useAppSelector } from '../hooks/store';
 import { Product } from '../types/product';
-import { getSortedProducts } from '../utils/sort';
 import Categories from '../components/Categories/Categories';
-import { getFilteredProducts } from '../utils/filter';
-import { getCurrentCategory, getCurrentSortType } from '../store/reducers/Products/selectors';
+import { getCurrentCategory, getCurrentSortType, getFilteredProducts } from '../store/reducers/Products/selectors';
 import { useState } from 'react';
 
 const PRODUCTS_PER_PAGE = 9;
@@ -20,8 +18,7 @@ type CatalogPageProps = {
 function CatalogPage({ products }: CatalogPageProps): JSX.Element {
   const sortType = useAppSelector(getCurrentSortType);
   const category = useAppSelector(getCurrentCategory);
-  const sortedProducts = getSortedProducts(products, sortType);
-  const filteredProducts = getFilteredProducts(sortedProducts, category);
+  const filteredProducts = useAppSelector(getFilteredProducts);
   const [currentPage, setCurrentPage] = useState(1);
   const pageCount = Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE);
   const renderedProducts = filteredProducts.slice((currentPage - 1) * PRODUCTS_PER_PAGE, currentPage * PRODUCTS_PER_PAGE);
