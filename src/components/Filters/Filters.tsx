@@ -1,38 +1,15 @@
 import { useMemo, useState, useEffect } from 'react';
-import { Product } from '../../types/product';
 import Categories from '../Categories/Categories';
 import cn from 'classnames';
-import { Category } from '../../enums';
 import { useResize } from '../../hooks/useResize';
 import { useAppDispatch, useAppSelector } from '../../hooks/store';
 import { changeProducer, resetFilters } from '../../store/reducers/Products/Products';
-import { getCurrentProducers } from '../../store/reducers/Products/selectors';
+import { getCurrentProducers, getProducts } from '../../store/reducers/Products/selectors';
+import { getProducers } from '../../utils/common';
 
-export const DESKTOP_SCREEN_SIZE = 768;
+function Filters(): JSX.Element {
+  const products = useAppSelector(getProducts);
 
-type FiltersProps = {
-  products: Product[];
-  currentCategory: Category | null;
-};
-
-type Producer = {
-  [producer: string]: number;
-}
-
-const getProducers = (products: Product[]) =>
-  products.reduce((acc: Producer, product) => {
-    const producer = product.producer;
-
-    if (!acc[producer]) {
-      acc[producer] = 1;
-    } else {
-      acc[producer]++;
-    }
-
-    return acc;
-  }, {});
-
-function Filters({ products, currentCategory }: FiltersProps): JSX.Element {
   const [visible, setVisible] = useState(true);
   const [visibleProducers, setVisibleProducers] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -129,10 +106,10 @@ function Filters({ products, currentCategory }: FiltersProps): JSX.Element {
 
               <div className="filters__controls">
                 <button className="btn" type="submit">Показать</button>
-                <button 
-                className="btn btn--small" 
-                type="reset"
-                onClick={handleResetClick}
+                <button
+                  className="btn btn--small"
+                  type="reset"
+                  onClick={handleResetClick}
                 >
                   <img src="images/catalog/trash.svg" alt="Удалить" />
                 </button>
@@ -142,7 +119,7 @@ function Filters({ products, currentCategory }: FiltersProps): JSX.Element {
         </>
       )}
 
-      <Categories classNames="filters" isVertical={true} currentCategory={currentCategory} />
+      <Categories classNames="filters" isVertical />
 
     </div>
   );

@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../enums';
 import { useAppSelector } from '../../hooks/store';
-import { getProducts, getTotalPrice } from '../../store/reducers/Basket/selectors';
+import { getBasketProducts, getTotalPrice } from '../../store/reducers/Basket/selectors';
 
 function BasketBtn(): JSX.Element {
-  const products = useAppSelector(getProducts);
+  const products = useAppSelector(getBasketProducts);
   const totalPrice = useAppSelector(getTotalPrice);
   const totalCount = products.reduce((acc, product) => acc + product.count, 0);
 

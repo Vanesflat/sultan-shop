@@ -1,15 +1,18 @@
 import cn from 'classnames';
 import { useDispatch } from 'react-redux';
 import { Category } from '../../enums';
+import { useAppSelector } from '../../hooks/store';
 import { changeCategory } from '../../store/reducers/Products/Products';
+import { getCurrentCategory } from '../../store/reducers/Products/selectors';
 
 type categoriesProps = {
   classNames: string;
   isVertical?: boolean;
-  currentCategory: Category | null;
 };
 
-function Categories({ classNames, isVertical, currentCategory }: categoriesProps): JSX.Element {
+function Categories({ classNames, isVertical }: categoriesProps): JSX.Element {
+  const currentCategory = useAppSelector(getCurrentCategory);
+  
   const dispatch = useDispatch();
 
   return (

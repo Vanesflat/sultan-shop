@@ -1,21 +1,17 @@
 import Layout from '../components/Layout/Layout';
-import { Product } from '../types/product';
 import Capacity from '../components/Capacity/Capacity';
 import Mark from '../components/Mark/Mark';
 import { useParams, Navigate } from 'react-router-dom';
-import { useState } from 'react';
-import cn from 'classnames';
 import { AppRoute } from '../enums';
 import { addProduct } from '../store/reducers/Basket/Basket';
-import { useAppDispatch } from '../hooks/store';
+import { useAppDispatch, useAppSelector } from '../hooks/store';
+import { getProducts } from '../store/reducers/Products/selectors';
+import ProductDescription from '../components/ProductDescription/ProductDescription';
+import ProductFeatures from '../components/ProductFeatures/ProductFeatures';
 
-type ProductPageProps = {
-  products: Product[];
-};
+function ProductPage(): JSX.Element {
+  const products = useAppSelector(getProducts);
 
-function ProductPage({ products }: ProductPageProps): JSX.Element {
-  const [descriptionVisible, setDescriptionVisible] = useState(false);
-  const [featuresVisible, setFeaturesVisible] = useState(false);
 
   const { id } = useParams();
   const dispatch = useAppDispatch();
@@ -79,39 +75,9 @@ function ProductPage({ products }: ProductPageProps): JSX.Element {
                 <li className="product-card__feature">Штрихкод: <span>{product.barcode}</span></li>
               </ul>
 
-              <div className="product-card__description">
-                <p
-                  className={cn('product-card__title', descriptionVisible && 'product-card__title--active')}
-                  onClick={() => setDescriptionVisible(!descriptionVisible)}
-                >
-                  Описание
-                </p>
-                {descriptionVisible && (<p className="product-card__text">{product.description}</p>)}
-              </div>
-
-              <div className="product-card__features-box">
-                <p
-                  className={cn('product-card__title', featuresVisible && 'product-card__title--active')}
-                  onClick={() => setFeaturesVisible(!featuresVisible)}
-                >
-                  Характеристики
-                </p>
-
-                {featuresVisible && (
-                  <ul className="product-card__features">
-                    <li className="product-card__feature">Назначение: <span>{product.brand}</span></li>
-                    <li className="product-card__feature">Тип: <span>{product.brand}</span></li>
-                    <li className="product-card__feature">Производитель: <span>{product.producer}</span></li>
-                    <li className="product-card__feature">Бренд: <span>{product.brand}</span></li>
-                    <li className="product-card__feature">Штрихкод: <span>{product.barcode}</span></li>
-                    <li className="product-card__feature">Вес: <span>{product.size}</span></li>
-                    <li className="product-card__feature">Объем: <span>{product.size}</span></li>
-                    <li className="product-card__feature">Кол-во в коробке: <span>1 шт</span></li>
-                  </ul>
-                )}
-              </div>
+              <ProductDescription product={product} />
+              <ProductFeatures product={product} />
             </div>
-
           </div>
         </div>
       </article>

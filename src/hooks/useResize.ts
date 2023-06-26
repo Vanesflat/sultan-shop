@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { DESKTOP_SCREEN_SIZE } from '../components/Filters/Filters';
+import { DESKTOP_SCREEN_SIZE } from '../const';
 
 export const useResize = () => {
   const [width, setWidth] = useState(window.innerWidth);

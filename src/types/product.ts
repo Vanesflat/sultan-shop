@@ -13,3 +13,5 @@ export type Product = {
   types: string[],
   count: number
 };
+
+export type Producer = Record<string, number>;

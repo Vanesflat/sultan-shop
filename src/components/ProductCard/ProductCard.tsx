@@ -4,14 +4,14 @@ import { Link, generatePath } from 'react-router-dom';
 import { AppRoute } from '../../enums';
 import { useAppDispatch, useAppSelector } from '../../hooks/store';
 import { addProduct, removeProduct, minusProduct } from '../../store/reducers/Basket/Basket';
-import { getProducts } from '../../store/reducers/Basket/selectors';
+import { getBasketProducts } from '../../store/reducers/Basket/selectors';
 
 type ProductCardProps = {
   product: Product;
 };
 
 function ProductCard({ product }: ProductCardProps): JSX.Element {
-  const products = useAppSelector(getProducts);
+  const products = useAppSelector(getBasketProducts);
   const productItem = products.find((productEl) => productEl.id === product.id);
   const dispatch = useAppDispatch();
 
