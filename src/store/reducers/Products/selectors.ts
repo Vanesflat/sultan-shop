@@ -9,6 +9,8 @@ export const getCurrentCategory = (state: RootState): Category | null => state[N
 export const getCurrentSortType = (state: RootState): SortType => state[NameSpace.Products].sortType;
 export const getCurrentProducers = (state: RootState): string[] => state[NameSpace.Products].producers;
 export const getProducts = (state: RootState): Product[] => state[NameSpace.Products].products;
+export const getCurrentMinPrice = (state: RootState): number => state[NameSpace.Products].minPrice;
+export const getCurrentMaxPrice = (state: RootState): number => state[NameSpace.Products].maxPrice;
 export const getStatus = (state: RootState): Status => state[NameSpace.Products].status;
 
 export const getFetchStatus = createSelector([getStatus], (status) => ({
@@ -23,7 +25,7 @@ export const getSortedProducts = createSelector(
 );
 
 export const getFilteredProducts = createSelector(
-  [getSortedProducts, getCurrentCategory, getCurrentProducers],
-  (products, category, producers) => filterProducts(products, category, producers)
+  [getSortedProducts, getCurrentCategory, getCurrentProducers, getCurrentMinPrice, getCurrentMaxPrice],
+  (products, category, producers, minPrice, maxPrice) => filterProducts(products, category, producers, minPrice, maxPrice)
 );
 

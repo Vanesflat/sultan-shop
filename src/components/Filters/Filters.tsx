@@ -5,14 +5,17 @@ import { useResize } from '../../hooks/useResize';
 import { useAppDispatch } from '../../hooks/store';
 import { resetFilters } from '../../store/reducers/Products/Products';
 import FilterByProducers from '../FilterByProducers/FilterByProducers';
+import FilterByPrice from '../FilterByPrice/FilterByPrice';
 
 function Filters(): JSX.Element {
   const [visible, setVisible] = useState(true);
+  const [isReset, setIsReset] = useState(false);
   const screenWidth = useResize();
 
   const dispatch = useAppDispatch();
 
   const handleResetClick = () => {
+    setIsReset(true);
     dispatch(resetFilters());
   }
 
@@ -20,7 +23,13 @@ function Filters(): JSX.Element {
     if (screenWidth.isScreenDesktop) {
       setVisible(true);
     }
-  }, [screenWidth.isScreenDesktop])
+  }, [screenWidth.isScreenDesktop]);
+
+  useEffect(() => {
+    if (isReset) {
+      setIsReset(false);
+    }
+  }, [isReset]);
 
   return (
     <div className="filters">
@@ -37,15 +46,8 @@ function Filters(): JSX.Element {
 
       {visible && (
         <>
-          <div className="filters__price">
-            <p>Цена <span>₸</span></p>
-            <input type="number" placeholder="0" />
-            <span>-</span>
-            <input type="number" placeholder="10000" />
-          </div>
-
+          <FilterByPrice isReset={isReset} />
           <FilterByProducers />
-
           <div className="filters__controls">
             <button className="btn" type="submit">Показать</button>
             <button

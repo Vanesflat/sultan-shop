@@ -10,6 +10,8 @@ type InitialState = {
   sortType: SortType;
   category: Category | null;
   producers: string[];
+  minPrice: number;
+  maxPrice: number;
   status: Status;
 };
 
@@ -18,6 +20,8 @@ const initialState: InitialState = {
   sortType: DEFAULT_SORT_TYPE,
   category: null,
   producers: [],
+  minPrice: 0,
+  maxPrice: 0,
   status: Status.Idle
 };
 
@@ -43,8 +47,17 @@ export const ProductsSlice = createSlice({
       state.producers.push(action.payload);
     },
 
+    setMinPrice: (state, action) => {
+      state.minPrice = action.payload;
+    },
+    setMaxPrice: (state, action) => {
+      state.maxPrice = action.payload;
+    },
+
     resetFilters: (state) => {
       state.producers = [];
+      state.minPrice = 0;
+      state.maxPrice = 0;
     }
   },
   extraReducers(builder) {
@@ -66,6 +79,8 @@ export const {
   changeSortType,
   changeCategory,
   changeProducer,
+  setMaxPrice,
+  setMinPrice,
   resetFilters
 } = ProductsSlice.actions;
 
